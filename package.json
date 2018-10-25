@@ -17,6 +17,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cross-env": "^5.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
