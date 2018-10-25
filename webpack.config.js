@@ -7,7 +7,30 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js',
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash].bundle.js',
+  },
+  optimization: {
+    namedChunks: true,
+    splitChunks: {
+      chunks: 'all',
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      maxSize: 0,
+      minChunks: 1,
+      minSize: 5000,
+      name: false,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   plugins: [new VueLoaderPlugin()],
   module: {
