@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import HelloComponent from './components/Hello.vue';
-import HelloDecoratorComponent from './components/HelloDecorator.vue';
+const HelloComponent = () => import('./components/Hello.vue');
+const HelloDecoratorComponent = () => import('./components/HelloDecorator.vue');
 
 const v = new Vue({
   el: '#app',
