@@ -15,9 +15,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          // other vue-loader options go here
-        },
+        options: {},
       },
       {
         test: /\.tsx?$/,
