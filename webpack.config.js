@@ -1,15 +1,47 @@
 var path = require('path');
 var webpack = require('webpack');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js',
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash].bundle.js',
   },
-  plugins: [new VueLoaderPlugin()],
+  optimization: {
+    namedChunks: true,
+    splitChunks: {
+      chunks: 'all',
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      maxSize: 0,
+      minChunks: 1,
+      minSize: 5000,
+      name: false,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'css/[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -34,12 +66,18 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'vue-style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.sass$/,
         use: [
           'vue-style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'sass-loader',

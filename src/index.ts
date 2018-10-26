@@ -1,6 +1,8 @@
 import Vue from 'vue';
-import HelloComponent from './components/Hello.vue';
-import HelloDecoratorComponent from './components/HelloDecorator.vue';
+const HelloComponent = () =>
+  import('./components/Hello.vue' /* webpackChunkName: "Hello" */);
+const HelloDecoratorComponent = () =>
+  import('./components/HelloDecorator.vue' /* webpackChunkName: "HelloDecorator" */);
 
 const v = new Vue({
   el: '#app',
