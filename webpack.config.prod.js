@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const baseWebpackConfig = require('./webpack.config');
 
 module.exports = merge(baseWebpackConfig, {
@@ -25,7 +26,12 @@ module.exports = merge(baseWebpackConfig, {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: 'build-inspect.html',
+    }),
+  ],
   module: {
     rules: [],
   },
