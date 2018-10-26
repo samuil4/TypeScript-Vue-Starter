@@ -16,6 +16,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/vue": "^2.0.0",
+    "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.2.0",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.9.4",

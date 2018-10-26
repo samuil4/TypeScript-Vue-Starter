@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -34,11 +35,12 @@ module.exports = {
     },
   },
   plugins: [
+    new CleanWebpackPlugin(['./dist']),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: 'css/[name].css',
+      filename: '[name].css',
       chunkFilename: '[id].css',
     }),
   ],
