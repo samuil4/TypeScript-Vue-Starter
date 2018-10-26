@@ -1,5 +1,4 @@
 const merge = require('webpack-merge');
-
 const baseWebpackConfig = require('./webpack.config');
 
 module.exports = merge(baseWebpackConfig, {
@@ -31,6 +30,9 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
+  },
+  performance: {
+    hints: false,
   },
   devtool: '#cheap-module-eval-source-map',
 });

@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 const baseWebpackConfig = require('./webpack.config');
 
 module.exports = merge(baseWebpackConfig, {
@@ -27,6 +28,7 @@ module.exports = merge(baseWebpackConfig, {
     },
   },
   plugins: [
+    // new CompressionPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: 'build-inspect.html',
@@ -35,11 +37,9 @@ module.exports = merge(baseWebpackConfig, {
   module: {
     rules: [],
   },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
+  performance: {
+    hints: true,
   },
-  devtool: '#cheap-module-eval-source-map',
 });
 
 if (process.env.NODE_ENV === 'production') {
