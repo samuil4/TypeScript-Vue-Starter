@@ -8,33 +8,35 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 
 export default Vue.extend({
-    props: ['name', 'initialEnthusiasm'],
-    data() {
-        return {
-            enthusiasm: this.initialEnthusiasm,
-        }
+  props: ['name', 'initialEnthusiasm'],
+  data() {
+    return {
+      enthusiasm: this.initialEnthusiasm,
+    };
+  },
+  methods: {
+    increment() {
+      this.enthusiasm++;
     },
-    methods: {
-        increment() { this.enthusiasm++; },
-        decrement() {
-            if (this.enthusiasm > 1) {
-                this.enthusiasm--;
-            }
-        },
+    decrement() {
+      if (this.enthusiasm > 1) {
+        this.enthusiasm--;
+      }
     },
-    computed: {
-        exclamationMarks(): string {
-            return Array(this.enthusiasm + 1).join('!');
-        }
-    }
+  },
+  computed: {
+    exclamationMarks(): string {
+      return Array(this.enthusiasm + 1).join('!');
+    },
+  },
 });
 </script>
 
-<style>
+<style lang="scss">
 .greeting {
-    font-size: 20px;
+  font-size: 20px;
 }
 </style>
