@@ -38,7 +38,7 @@ module.exports = merge(baseWebpackConfig, {
     rules: [],
   },
   performance: {
-    hints: true,
+    hints: 'warning',
   },
 });
 
